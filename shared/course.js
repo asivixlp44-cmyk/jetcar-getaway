@@ -595,6 +595,11 @@ function buildMain() {
     b.drive(30, 0, b.y, 20);
     c.finish = { x: fx, y: b.y, z: fz, r: 12, s: last.s + Math.hypot(fx - last.x, fz - last.z) };
     b.deco({ kind: 'trophy', u: 30, v: 0, y: b.y, s: 1 });
+    // Stage 1's pad: two slanted rails from the wide deck road (22) in to the course road (16), so a car coming down it off-centre slides
+    // in instead of meeting a rail end head-on. Added last so every other part keeps its id
+    b.x = 0; b.z = z1 + 26; b.y = 0; b.turnTo(0); b.chunk = 1; b.world = 0;
+    const fa = Math.atan2(3, 24);
+    for (const sg of [-1, 1]) b.part({ u: 12, v: sg * 10.1, y: 1.9, w: 1.2, l: Math.hypot(3, 24), h: 5.4, rot: -sg * fa, look: 'rail', noCam: true });
     c.chunks = ck + 1;
     c.index();
     return c;

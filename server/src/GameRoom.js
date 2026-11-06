@@ -24,7 +24,8 @@ const rnd = (a, b) => a + Math.random() * (b - a);
 // Guest ids come from the browser; they can never claim a Bloxity identity
 const guestUid = (uid, fallback) => String(uid || fallback).replace(/^legion_/, 'guest_').slice(0, 64);
 const cleanAvatar = (av) => (typeof av === 'string' && av.length <= 2000 ? av : '');
-const hubSpot = () => ({ x: HUB.spawn.x + rnd(-14, 14), y: 0, z: HUB.spawn.z + rnd(-4, 4), ry: 0 });
+// within 5 of the middle: holding W from here goes straight out through START and down Stage 1's road (wider, and a car meets a wall)
+const hubSpot = () => ({ x: HUB.spawn.x + rnd(-5, 5), y: 0, z: HUB.spawn.z + rnd(-8, 8), ry: 0 });
 
 export const liveRooms = new Set();
 
