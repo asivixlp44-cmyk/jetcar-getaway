@@ -1,0 +1,10 @@
+import puppeteer from 'puppeteer-core';
+import fs from 'node:fs';
+const dir = process.argv[2], out = process.argv[3], files = process.argv.slice(4);
+const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--allow-file-access-from-files'] });
+const p = await b.newPage(); await p.setViewport({ width: 1280, height: 720 });
+const imgs = files.map((f) => `<div style="position:relative"><img src="${f}" style="width:640px;height:360px;display:block;object-fit:contain;background:#000"><span style="position:absolute;left:4px;bottom:4px;color:#ff0;font:bold 16px sans-serif;background:#000a">${f}</span></div>`).join('');
+fs.writeFileSync(dir + '/_s.html', `<body style="margin:0;display:grid;grid-template-columns:640px 640px;background:#000">${imgs}</body>`);
+await p.goto('file:///' + dir + '/_s.html'); await new Promise((r) => setTimeout(r, 400));
+await p.screenshot({ path: out, type: 'jpeg', quality: 82 });
+await b.close();

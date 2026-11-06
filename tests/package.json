@@ -1,0 +1,20 @@
+{
+  "name": "jetcar-getaway-tests",
+  "private": true,
+  "type": "module",
+  "description": "Headless server and course tests, economy simulation, browser runs (autopilot, real input, latency, screenshots, frame rates)",
+  "scripts": {
+    "server": "node server.test.mjs",
+    "courses": "node courses.mjs",
+    "economy": "node economy.mjs",
+    "autopilot": "node autopilot.mjs",
+    "screens": "node screens.mjs",
+    "prod": "node prod.mjs",
+    "latency": "node latency.mjs",
+    "perf": "node perf.mjs"
+  },
+  "dependencies": {
+    "@colyseus/sdk": "^0.18.4",
+    "puppeteer-core": "^24.0.0"
+  }
+}
